@@ -5,9 +5,9 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-        <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;database=wonderfulDB</property>
+        <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;database=Wonderful</property>
         <property name="hibernate.connection.username">sa</property>
-        <property name="hibernate.connection.password">80857</property>
+        <property name="hibernate.connection.password">mayday55660223</property>
         <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
         <property name="hibernate.transaction.coordinator_class">jdbc</property>
 <!--         <property name="hibernate.current_session_context_class">thread</property> -->

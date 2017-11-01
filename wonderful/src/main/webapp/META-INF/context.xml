@@ -2,6 +2,6 @@
 <context>
 	<Resource name="jdbc/wonderfulDB" auth="Container" type="javax.sql.Datasource"
 			maxTotal="100" maxIdle="30" maxWaitMillis="10000"
-			username="sa" password="80857" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+			username="sa" password="mayday55660223" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 			url="jdbc:sqlserver://localhost:1433;database=wonderfulDB"/>
 </context>
