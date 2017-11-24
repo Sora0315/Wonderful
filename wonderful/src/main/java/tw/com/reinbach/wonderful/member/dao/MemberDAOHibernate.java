@@ -1,17 +1,23 @@
 package tw.com.reinbach.wonderful.member.dao;
 
 import java.util.List;
-import javax.persistence.criteria.*;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
+import org.hibernate.type.PrimitiveCharacterArrayNClobType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-
 import tw.com.reinbach.wonderful.member.bean.MemberBean;
+import tw.com.reinbach.wonderful.tools.PrimitiveNumberEditor;
 
 @Repository
 public class MemberDAOHibernate implements MemberDAO {
@@ -25,7 +31,7 @@ public class MemberDAOHibernate implements MemberDAO {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-
+		binder.registerCustomEditor(int.class, new PrimitiveNumberEditor(Integer.class, true));
 	}
 
 	@Override
@@ -73,7 +79,7 @@ public class MemberDAOHibernate implements MemberDAO {
 			CriteriaBuilder criteriaBuilder = this.getSession().getCriteriaBuilder();
 			CriteriaQuery<MemberBean> criteriaQuery = criteriaBuilder.createQuery(MemberBean.class);
 			Root<MemberBean> root = criteriaQuery.from(MemberBean.class);
-			criteriaQuery.select(root.get("MemID")).where(criteriaBuilder.equal(root.get("Email"), Email));
+			criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("Email"), Email));
 			Query<MemberBean> query = this.getSession().createQuery(criteriaQuery);
 			MemberBean memberBean = query.getSingleResult();
 			return memberBean;
@@ -99,11 +105,9 @@ public class MemberDAOHibernate implements MemberDAO {
 
 	@Override
 	public String getLastID() {
-		String sql = "use Wonderful select top 1 substring(m.MemID, 4, 8) from Member as m order by substring(m.MemID, 4, 8) desc";
-		NativeQuery<MemberBean> nativeQuery = this.getSession().createNativeQuery(sql)
-				.addSynchronizedEntityClass(MemberBean.class);
-		String lastID = (String) nativeQuery.getSingleResult().getMemID();
-		return lastID;
+		String sql = "use Wonderful select top 1 * from Member as m order by substring(m.MemID, 4, 8) desc";
+		NativeQuery<MemberBean> nativeQuery = this.getSession().createNativeQuery(sql, MemberBean.class);
+		return nativeQuery.getSingleResult().getMemID().substring(3);
 	}
 
 }

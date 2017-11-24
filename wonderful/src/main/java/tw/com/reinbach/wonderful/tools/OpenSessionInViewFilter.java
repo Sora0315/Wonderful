@@ -20,7 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 public class OpenSessionInViewFilter implements Filter {
 
 	private SessionFactory sessionFactory = null;
-	
+
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		ServletContext application = filterConfig.getServletContext();

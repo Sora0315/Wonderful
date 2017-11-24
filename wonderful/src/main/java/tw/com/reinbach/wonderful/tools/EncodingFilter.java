@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class EncodingFilter implements Filter {
 
 	private FilterConfig filterConfig;
-	
+
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
@@ -28,7 +28,7 @@ public class EncodingFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		
+
 	}
 
 	@Override

@@ -13,9 +13,6 @@ import org.hibernate.query.NativeQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-
-import tw.com.reinbach.wonderful.member.bean.MemberBean;
-import tw.com.reinbach.wonderful.product.bean.ProdStatusBean;
 import tw.com.reinbach.wonderful.product.bean.ProductBean;
 
 public class ProductDAOHibernate implements ProductDAO {
